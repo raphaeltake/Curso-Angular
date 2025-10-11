@@ -1,38 +1,41 @@
-<div class="container">
-  <h1>Lista de compras</h1>
-  <form #frm="ngForm" class="add-item-form" (ngSubmit)="adicionarItem()">
-    <input type="text" name="item" id="item" [(ngModel)]="item" placeholder="Digite o nome do item">
-    <button type="submit">Adicionar</button>
-  </form>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          #
-        </th>
-        <th>
-          Item
-        </th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      @for ( elemento of lista; track elemento.id ) {
+<body>
+  <div class="container">
+    <h1>Lista de compras</h1>
+    <form #frm="ngForm" class="add-item-form" (ngSubmit)="adicionarItem()">
+      <input type="text" name="item" id="item" [(ngModel)]="item" placeholder="Digite o nome do item">
+      <button type="submit">Adicionar</button>
+      <button type="button" (click)="limparLista()">Limpar</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            #
+          </th>
+          <th>
+            Item
+          </th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for ( elemento of lista; track elemento.id ) {
         <tr>
           <td>{{elemento.id}}</td>
-          <td>{{elemento.nome}}</td>
-          <td><input type="checkbox" name="" id=""></td>
+          <td><span [ngClass]="{ 'item-riscado' : elemento.comprado}">{{elemento.nome}}</span></td>
+          <td><input type="checkbox" (click)="riscarItem(elemento)" [checked]="elemento.comprado"></td>
         </tr>
-      } @empty {
+        } @empty {
         <tr colspan="3">
           Nenhum item adicionado!
         </tr>
-      }
-      <!-- <tr *ngFor = "let elemento of lista">
+        }
+        <!-- <tr *ngFor = "let elemento of lista">
         <td>{{elemento.id}}</td>
         <td>{{elemento.nome}}</td>
         <td><input type="checkbox" name="" id=""></td>
       </tr> -->
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
+</body>
