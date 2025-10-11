@@ -17,16 +17,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Arroz</td>
+      @for ( elemento of lista; track elemento.id ) {
+        <tr>
+          <td>{{elemento.id}}</td>
+          <td>{{elemento.nome}}</td>
+          <td><input type="checkbox" name="" id=""></td>
+        </tr>
+      } @empty {
+        <tr colspan="3">
+          Nenhum item adicionado!
+        </tr>
+      }
+      <!-- <tr *ngFor = "let elemento of lista">
+        <td>{{elemento.id}}</td>
+        <td>{{elemento.nome}}</td>
         <td><input type="checkbox" name="" id=""></td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Maçã</td>
-        <td><input type="checkbox" name="" id=""></td>
-      </tr>
+      </tr> -->
     </tbody>
   </table>
 </div>
