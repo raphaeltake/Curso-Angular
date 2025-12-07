@@ -26,8 +26,10 @@
           <td><input type="checkbox" (click)="riscarItem(elemento)" [checked]="elemento.comprado"></td>
         </tr>
         } @empty {
-        <tr colspan="3">
-          Nenhum item adicionado!
+        <tr>
+          <td colspan="3">
+            Nenhum item adicionado!
+          </td>
         </tr>
         }
         <!-- <tr *ngFor = "let elemento of lista">

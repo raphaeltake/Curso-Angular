@@ -19,7 +19,7 @@ export class ListaComprasComponent {
     itemLista.id = this.lista.length + 1
 
     this.lista.push(itemLista)
-
+    
     this.item = ''
   }
 
