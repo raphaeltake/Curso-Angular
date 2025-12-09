@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar clique duplo</title>
+</head>
+
+<body>
+  <!-- <div class="exibirCliques">
+    <span class="cliques">#</span>
+  </div> -->
+  <button id="botao" type="button" onclick="adicionarClick()">
+    <span class="cliques">Clique</span>
+  </button>
+</body>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    place-content: center;
+    text-align: center;
+  }
+
+  body {
+    display: grid;
+    position: relative;
+    gap: 2rem;
+  }
+
+  button {
+    width: 100vw;
+    height: 100vh;
+    font-size: 2rem;
+    background-color: #272727;
+    color: whitesmoke;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #272727;
+    color: #6c6c6c;
+  }
+
+  div {
+    font-size: 2rem;
+    position: absolute;
+    z-index: 4;
+  }
+</style>
+
+<script>
+  let span = document.querySelector(".cliques")
+  let cliques = 0
+
+  function adicionarClick() {
+    cliques += 1
+    span.innerHTML = `${cliques}`
+  }
+
+</script>
+
+</html>
