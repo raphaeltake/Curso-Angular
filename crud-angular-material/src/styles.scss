@@ -7,16 +7,12 @@
 
 html {
   height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$cyan-palette,
+  @include mat.theme((color: (primary: mat.$cyan-palette,
         tertiary: mat.$orange-palette,
       ),
       typography: Roboto,
       density: 0,
-    )
-  );
+    ));
 }
 
 body {
@@ -37,7 +33,7 @@ body {
   height: 100%;
 }
 
-.mt-20{
+.mt-20 {
   margin-top: 20px;
 }
 
@@ -49,10 +45,30 @@ body {
   margin-top: 60px;
 }
 
-.ml-5{
+.ml-5 {
   margin-left: 5px;
 }
 
-.full-width{
+.full-width {
   width: 100%;
+}
+
+.botao-secundario {
+  background: var(--mat-sys-tertiary) !important;
+  color: var(--mat-sys-on-tertiary) !important;
+}
+
+input {
+  caret-color: red !important;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 500;
+
+  display: flex;
+  padding: 10px;
+  gap: 8px;
 }
