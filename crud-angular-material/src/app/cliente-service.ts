@@ -8,8 +8,14 @@ export class ClienteService {
 
   static REPO_CLIENTES = "_CLIENTES"
 
-  pesquisarClientes(nome: string) : Cliente[]{
-    return this.obterStorage();
+  pesquisarClientes(nomeBusca: string): Cliente[] {
+    const clientes = this.obterStorage()
+
+    if (!nomeBusca) {
+      return clientes
+    }
+
+    return clientes.filter(cliente => cliente.nome?.toLowerCase()?.indexOf(nomeBusca.toLowerCase()) !== -1)
   }
 
   private obterStorage(): Cliente[] {
