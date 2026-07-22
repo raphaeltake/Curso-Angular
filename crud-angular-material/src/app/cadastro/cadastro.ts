@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { Cliente } from './cliente'
 import { ClienteService } from '../cliente-service'
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask' //Coloca mascaras nos inputs
 
 @Component({
   selector: 'app-cadastro',
@@ -20,6 +21,10 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
+    NgxMaskDirective,
+  ],
+  providers: [
+    provideNgxMask()
   ],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.scss',
@@ -62,6 +67,6 @@ export class Cadastro {
     }
   }
 
-  
+
 
 }
