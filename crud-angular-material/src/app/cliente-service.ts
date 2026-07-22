@@ -43,4 +43,32 @@ export class ClienteService {
     //find apenas uma elemento.
     return cliente.find(cliente => cliente.id === id);
   }
+
+  atualizar(cliente: Cliente) {
+    const storage = this.obterStorage()
+    storage.forEach(c => {
+      if (c.id == cliente.id) {
+        Object.assign(c, cliente) //Troca o objeto já salvo pelo novo (atualizado)
+      }
+    })
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage))
+  }
+
+  deletar(cliente: Cliente) {
+    const storage = this.obterStorage()
+
+    const novaLista = storage.filter(c => c.id !== cliente.id)
+
+    // const indexItem = storage.indexOf(cliente) //outra forma
+
+    // if (indexItem > -1) {
+    //   storage.splice(indexItem, 1)
+    // }
+    console.log(storage)
+    console.log("AAAAA")
+    console.log(cliente)
+    console.log(novaLista)
+
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(novaLista))
+  }
 }

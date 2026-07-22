@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatButtonModule } from '@angular/material/button'
 import { Cliente } from './cliente'
 import { ClienteService } from '../cliente-service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -32,6 +32,7 @@ export class Cadastro {
   constructor(
     private service: ClienteService,
     private route: ActivatedRoute, //Captura dados da rota que foi acessada
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -45,15 +46,22 @@ export class Cadastro {
         if (this.cliente) {
           this.atualizando = true
         }
-        
+
       }
 
     })) { }
   }
 
   salvar() {
-    this.service.salvar(this.cliente)
-    this.cliente = Cliente.newCliente()
+    if (!this.atualizando) {
+      this.service.salvar(this.cliente)
+      this.cliente = Cliente.newCliente()
+    } else {
+      this.service.atualizar(this.cliente)
+      this.router.navigate(["/consulta"])
+    }
   }
+
+  
 
 }

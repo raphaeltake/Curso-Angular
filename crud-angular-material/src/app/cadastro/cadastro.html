@@ -56,15 +56,17 @@
           </div>
 
           <mat-card-actions>
+            @if(!atualizando){
             <button mat-flat-button type="submit">
               <mat-icon fontIcon="save"></mat-icon>
               Salvar
             </button>
-
-            <button mat-flat-button>
+            } @else{
+            <button mat-flat-button type="submit">
               <mat-icon fontIcon=" save"></mat-icon>
               Atualizar
             </button>
+            }
 
             <button mat-flat-button class="botao-secundario ml-5">
               <mat-icon fontIcon="save"></mat-icon>
