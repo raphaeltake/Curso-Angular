@@ -1,4 +1,4 @@
-import { Component, inject, Inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { MatCardModule } from '@angular/material/card'
 import { FormsModule } from '@angular/forms'
@@ -11,6 +11,8 @@ import { ClienteService } from '../cliente-service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask' //Coloca mascaras nos inputs
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { BrasilApiService } from '../brasil-apiservice';
+import { Estado, Municipio } from '../brasilapi.models';
 
 @Component({
   selector: 'app-cadastro',
@@ -35,14 +37,18 @@ export class Cadastro {
   cliente: Cliente = Cliente.newCliente()
   atualizando: boolean = false
   snack: MatSnackBar = inject(MatSnackBar)
+  estados: Estado[] = []
+  municipios: Municipio[] = []
 
   constructor(
     private service: ClienteService,
     private route: ActivatedRoute, //Captura dados da rota que foi acessada
-    private router: Router
+    private router: Router,
+    private brasilApiService: BrasilApiService
   ) { }
 
   ngOnInit() {
+    
     if (this.route.queryParamMap.subscribe((query: any) => {
       const params = query['params']
       const id = params['id']
@@ -55,8 +61,8 @@ export class Cadastro {
         }
 
       }
-
     })) { }
+    this.carregarUFs()
   }
 
   salvar() {
@@ -75,4 +81,13 @@ export class Cadastro {
     this.snack.open(mensagem, "OK")
   }
 
+  carregarUFs() {
+    //Observable -> observa até que a ação deseja seja realizada
+    //Subcriber -> quem vai receber a informação que foi processada
+    this.brasilApiService.listarUFs().subscribe({
+      next: listaEstados => console.log(listaEstados),
+      error: erro => console.log("Correu um erro: ", erro)
+    })
+  }  
+    
 }
