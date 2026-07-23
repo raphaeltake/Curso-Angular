@@ -13,6 +13,8 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask' //Coloca mascaras no
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { BrasilApiService } from '../brasil-apiservice';
 import { Estado, Municipio } from '../brasilapi.models';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
@@ -25,6 +27,8 @@ import { Estado, Municipio } from '../brasilapi.models';
     MatIconModule,
     MatButtonModule,
     NgxMaskDirective,
+    MatSelectModule,
+    CommonModule
   ],
   providers: [
     provideNgxMask()
@@ -48,7 +52,7 @@ export class Cadastro {
   ) { }
 
   ngOnInit() {
-    
+    this.carregarUFs()
     if (this.route.queryParamMap.subscribe((query: any) => {
       const params = query['params']
       const id = params['id']
@@ -57,12 +61,13 @@ export class Cadastro {
         this.cliente = this.service.buscarClientePorId(id) || Cliente.newCliente()
 
         if (this.cliente) {
+          const event = { value: this.cliente.uf }
           this.atualizando = true
+          this.carregarMunicipios(event as MatSelectChange)
         }
 
       }
     })) { }
-    this.carregarUFs()
   }
 
   salvar() {
@@ -85,9 +90,17 @@ export class Cadastro {
     //Observable -> observa até que a ação deseja seja realizada
     //Subcriber -> quem vai receber a informação que foi processada
     this.brasilApiService.listarUFs().subscribe({
-      next: listaEstados => console.log(listaEstados),
-      error: erro => console.log("Correu um erro: ", erro)
+      next: listaEstados => this.estados = listaEstados,
+      error: erro => console.log("Ocorreu um erro: ", erro)
     })
-  }  
-    
+  }
+
+  carregarMunicipios(event: MatSelectChange) {
+    const ufSelecionada = event.value
+    this.brasilApiService.listarMunicipios(ufSelecionada).subscribe({
+      next: listaMunicipios => this.municipios = listaMunicipios,
+      error: erro => console.log("Ocorreu um erro: ", erro)
+    })
+  }
+
 }
