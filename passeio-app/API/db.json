@@ -1,0 +1,20 @@
+{
+  "categorias": [
+    {
+      "id": "1",
+      "nome": "Restaurantes",
+      "descricao": "Lugares para alimentação"
+    },
+    {
+      "id": "lp7pwd8BZIE",
+      "nome": "Shopping",
+      "descricao": "Para fazer comprar e passear"
+    },
+    {
+      "nome": "Teste",
+      "descricao": "testando categorias",
+      "id": "wXgBQNrck4E"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

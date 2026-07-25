@@ -2,17 +2,22 @@
   <h2 class="text-2x1 font-semibold text-gray-700 mg-4">Nova Categoria</h2>
 
   <form id="categoriaForm" [formGroup]="camposForm" (ngSubmit)="salvar()">
+
     <div class="mb-4">
       <label for="" class="block text-gray-600 font-medium mb-2">Nome</label>
       <input type="text" class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Ex: Restaurantes, Praias, Shopping" id="nome" name="nome" formControlName="nome" required>
+      @if(isCampoInvalido('nome')){
       <span class="text-red-500 text-sm">Campo obrigatório</span>
+      }
     </div>
 
     <div class="mb-4">
       <label for="" class="block text-gray-600 font-medium mb-2">Descrição</label>
       <textarea rows="4" class="w-full p-3 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Ex: Restaurantes, Praias, Shopping" id="descricao" name="descricao" formControlName="descricao" required>
       </textarea>
+      @if(isCampoInvalido('descricao')){
       <span class="text-red-500 text-sm">Campo obrigatório</span>
+      }
     </div>
 
     <button type="submit" class="w-full bg-blue-600 text-white font-semibold p-3 rounded shadow hover:bg-blue-700 cursor-pointer">
