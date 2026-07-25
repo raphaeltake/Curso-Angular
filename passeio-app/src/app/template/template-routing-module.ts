@@ -6,7 +6,12 @@ const routes: Routes = [
   {
     path: '', component: Layout,
     children: [
-      { path: 'categorias', loadChildren: () => import('../categorias/categorias-module').then(m => m.CategoriasModule) }
+      {
+        path: 'categorias', loadChildren: () => import('../categorias/categorias-module').then(m => m.CategoriasModule)
+      },
+      {
+        path: 'lugares', loadChildren: () => import('../lugares/lugares-module').then(m => m.LugaresModule), pathMatch: 'full'
+      }
     ]
   },
 ];
